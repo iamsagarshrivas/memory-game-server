@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/game-boards
 /.pnp
 .pnp.js
 
