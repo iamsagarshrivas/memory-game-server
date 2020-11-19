@@ -1,10 +1,15 @@
 const http = require("http");
-const { env, port, ip, apiRoot } = require("./config");
+const { existsSync, mkdirSync } = require("fs");
+const { env, port, ip, apiRoot, gameFilePath } = require("./config");
 const express = require("./middleware/express");
 const api = require("./api");
 
 const app = express(apiRoot, api);
 const server = http.createServer(app);
+
+if (!existsSync(gameFilePath)) {
+  mkdirSync(gameFilePath);
+}
 
 setImmediate(() => {
   server.listen(port, ip, () => {
